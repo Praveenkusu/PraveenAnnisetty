@@ -27,19 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })(start);
   }
 
-  // ── B/A sliders ──
-  document.querySelectorAll('[data-slider]').forEach(s => {
-    const b = s.querySelector('.ba-slider__before'), d = s.querySelector('.ba-slider__divider'), h = s.querySelector('.ba-slider__handle');
-    let drag = false;
-    const set = x => { const r = s.getBoundingClientRect(); let p = ((x-r.left)/r.width)*100; p = Math.max(3,Math.min(97,p));
-      b.style.clipPath = `inset(0 ${100-p}% 0 0)`; d.style.left = h.style.left = p+'%'; };
-    s.addEventListener('mousedown', e => { e.preventDefault(); drag=true; set(e.clientX); });
-    window.addEventListener('mousemove', e => { if(drag) set(e.clientX); });
-    window.addEventListener('mouseup', () => drag=false);
-    s.addEventListener('touchstart', e => { drag=true; set(e.touches[0].clientX); }, {passive:true});
-    s.addEventListener('touchmove', e => { if(drag){e.preventDefault(); set(e.touches[0].clientX);} }, {passive:false});
-    s.addEventListener('touchend', () => drag=false);
-  });
+
 
   // ── Highlight "Choose a plan" text when scrolling to plans ──
   const choosePlanText = document.getElementById('choose-plan-text');
